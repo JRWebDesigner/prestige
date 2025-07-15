@@ -25,7 +25,7 @@ export const perfumes: Perfume[] = [
     brand: 'perfume',
     price: 380,
     description: '9pm de Afnan es una fragancia de la familia olfativa Oriental Vainilla para Hombres. 9pm se lanzó en 2020. Las Notas de Salida son manzana, canela, lavanda silvestre y bergamota; las Notas de Corazón son flor de azahar del naranjo y lirio de los valles (muguete); las Notas de Fondo son vainilla, haba tonka, ámbar y pachulí.',
-    image: '/perfume2.jpg',
+    image: '/perfume3.jpg',
     category: 'masculino',
     size: '90ml',
     notes: {
@@ -42,7 +42,7 @@ export const perfumes: Perfume[] = [
     brand: 'perfume',
     price: 420,
     description: 'Khamrah de Lattafa Perfumes es una fragancia de la familia olfativa Oriental Especiada para Hombres y Mujeres. Esta fragrancia es nueva. Khamrah se lanzó en 2022. Las Notas de Salida son canela, nuez moscada y bergamota; las Notas de Corazón son dátiles, praliné, nardos y Mahonial; las Notas de Fondo son vainilla, haba tonka, Amberwood, mirra, benjuí y Akigalawood.',
-    image: '/perfume.jpg',
+    image: '/perfume2.jpg',
     category: 'masculino',
     size: '100ml',
     notes: {
