@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Menu, X, Package } from 'lucide-react';
+import { Search, Menu, X, Package,ShoppingBag } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,21 +20,12 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <img className="w-[200px]" src="/logo.png" />
-          </Link>
-
+    <header className="bg-white py-5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="flex items-center justify-around h-16 md:grid md:grid-cols-3 justify-center items-center place-items-center mx-auto">
+         
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-black transition-colors">
-              Catálogo
-            </Link>
-          </nav>
-
+         
           {/* Search Bar */}
           <div className="hidden md:flex items-center space-x-4">
             <form onSubmit={handleSearch} className="relative">
@@ -48,7 +39,14 @@ export default function Header() {
               />
             </form>
           </div>
+           {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <img className="w-[200px]" src="/logo.png" />
+          </Link>
 
+           <nav className="hidden md:flex items-center space-x-8">
+            <ShoppingBag className="transform -translate-y-1/2 text-gray-800 w-7 h-7"/>
+          </nav>
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
@@ -92,6 +90,25 @@ export default function Header() {
             </div>
           </div>
         )}
+      </div>
+      <div className="hidden md:flex justify-center">
+         <nav className="flex gap-7 items-center justify-center">
+            <Link href="/" className="text-gray-700 hover:text-black transition-colors">
+                Inicio
+              </Link>
+              <Link href="/combos" className="text-gray-700 hover:text-black transition-colors">
+                Arma tu KIT
+              </Link>
+              <Link href="/masculino" className="text-gray-700 hover:text-black transition-colors">
+                Para Hombres
+              </Link>
+              <Link href="/femenino" className="text-gray-700 hover:text-black transition-colors">
+                Para Mujeres
+              </Link>
+              <Link href="/unisex" className="text-gray-700 hover:text-black transition-colors">
+                Contactos
+              </Link>
+         </nav>
       </div>
     </header>
   );

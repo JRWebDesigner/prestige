@@ -58,7 +58,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3">
-                Ver Catálogo
+                Comprar Ahora
               </Button>
             </div>
           </div>
