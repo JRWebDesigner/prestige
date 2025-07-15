@@ -8,7 +8,7 @@ export const perfumes: Perfume[] = [
     price: 100,
     originalPrice: 200,
     description: 'Le Male Elixir de Jean Paul Gaultier es una fragancia de la familia olfativa Oriental Fougère para Hombres. Esta fragrancia es nueva. Le Male Elixir se lanzó en 2023. La Nariz detrás de esta fragrancia es Quentin Bisch. Las Notas de Salida son lavanda y menta; las Notas de Corazón son vainilla y benjuí; las Notas de Fondo son miel, haba tonka y tabaco.',
-    image: './perfume1.jpg',
+    image: '/perfume1.jpg',
     category: 'masculino',
     size: '100ml',
     notes: {
@@ -25,7 +25,7 @@ export const perfumes: Perfume[] = [
     brand: 'perfume',
     price: 380,
     description: '9pm de Afnan es una fragancia de la familia olfativa Oriental Vainilla para Hombres. 9pm se lanzó en 2020. Las Notas de Salida son manzana, canela, lavanda silvestre y bergamota; las Notas de Corazón son flor de azahar del naranjo y lirio de los valles (muguete); las Notas de Fondo son vainilla, haba tonka, ámbar y pachulí.',
-    image: './perfume2.jpg',
+    image: '/perfume2.jpg',
     category: 'masculino',
     size: '90ml',
     notes: {
