@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { perfumes } from '@/data/perfumes';
 import { Perfume, ComboItem } from '@/types/perfume';
-import PerfumeCard from '@/components/PerfumeCard';
+import PerfumeCardKit from '@/components/PerfumeCardKit';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -128,7 +128,7 @@ Total de productos: ${totals.itemCount}
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredPerfumes.map((perfume) => (
-                <PerfumeCard 
+                <PerfumeCardKit 
                   key={perfume.id} 
                   perfume={perfume} 
                   onAddToCombo={addToCombo}

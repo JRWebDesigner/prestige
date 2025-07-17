@@ -9,6 +9,7 @@ export interface CartItem {
     category: string;
   };
   quantity: number;
+  selectedSize: string;
 }
 
 export interface Cart {
