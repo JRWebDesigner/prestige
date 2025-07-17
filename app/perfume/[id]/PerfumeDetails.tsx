@@ -14,6 +14,11 @@ import { ShoppingCart, Heart, Share2, Star, Check, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+interface PerfumeDetailsProps {
+  perfume: Perfume | undefined;
+  relatedPerfumes: Perfume[];
+}
+
 export default function PerfumePage() {
   const params = useParams();
   const perfume = perfumes.find(p => p.id === params.id);
