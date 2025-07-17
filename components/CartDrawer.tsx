@@ -26,7 +26,7 @@ export default function CartDrawer({ children }: CartDrawerProps) {
     if (cart.items.length === 0) return;
     
     const itemsList = cart.items.map(item => 
-      `• ${item.perfume.name} - ${item.perfume.brand} (${item.quantity}x) - Bs. ${item.perfume.price * item.quantity}`
+      `• ${item.perfume.name} - ${item.perfume.brand} (${item.selectedSize}) (${item.quantity}x) - Bs. ${item.perfume.price * item.quantity}`
     ).join('\n');
     
     const message = `¡Hola! Quiero comprar estos perfumes:
@@ -82,7 +82,7 @@ Total de productos: ${cart.itemCount}
               <div className="flex-1 overflow-y-auto py-4">
                 <div className="space-y-4">
                   {cart.items.map((item) => (
-                    <div key={item.perfume.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div key={`${item.perfume.id}-${item.selectedSize}`} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <Image
                         src={item.perfume.image}
                         alt={item.perfume.name}
@@ -95,7 +95,7 @@ Total de productos: ${cart.itemCount}
                           {item.perfume.name}
                         </h4>
                         <p className="text-xs text-gray-600">{item.perfume.brand}</p>
-                        <p className="text-xs text-gray-500">{item.perfume.size}</p>
+                        <p className="text-xs text-gray-500">{item.selectedSize}</p>
                         <p className="text-sm font-bold text-black">
                           Bs. {item.perfume.price * item.quantity}
                         </p>
@@ -104,7 +104,7 @@ Total de productos: ${cart.itemCount}
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => updateQuantity(item.perfume.id, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.perfume.id, item.selectedSize, item.quantity - 1)}
                           className="h-8 w-8 p-0"
                         >
                           <Minus className="w-3 h-3" />
@@ -115,7 +115,7 @@ Total de productos: ${cart.itemCount}
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => updateQuantity(item.perfume.id, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.perfume.id, item.selectedSize, item.quantity + 1)}
                           className="h-8 w-8 p-0"
                         >
                           <Plus className="w-3 h-3" />
@@ -123,7 +123,7 @@ Total de productos: ${cart.itemCount}
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => removeFromCart(item.perfume.id)}
+                          onClick={() => removeFromCart(item.perfume.id, item.selectedSize)}
                           className="h-8 w-8 p-0 text-red-500 hover:text-red-700"
                         >
                           <Trash2 className="w-3 h-3" />
