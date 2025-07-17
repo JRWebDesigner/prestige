@@ -58,25 +58,21 @@ export default function CombosPage() {
       return sum + (sizeData.price * item.quantity);
     }, 0);
     const itemCount = comboItems.reduce((sum, item) => sum + item.quantity, 0);
+    const total = subtotal;
     
-    let discount = 0;
-    if (itemCount >= 2) discount = 0.05; // 5% descuento por 2 o más
-    if (itemCount >= 3) discount = 0.10; // 10% descuento por 3 o más
-    if (itemCount >= 4) discount = 0.15; // 15% descuento por 4 o más
-    
-    const discountAmount = subtotal * discount;
-    const total = subtotal - discountAmount;
-    
-    return { subtotal, discount, discountAmount, total, itemCount };
+    return { subtotal, total, itemCount };
   };
 
   const handleBuyCombo = () => {
     if (comboItems.length === 0) return;
     
     const totals = calculateTotals();
-    const itemsList = comboItems.map(item => 
-      `• ${item.perfume.name} - ${item.perfume.brand} (${item.selectedSize}) (${item.quantity}x) - Bs. ${(item.perfume.sizes.find(s => s.size === item.selectedSize)?.price || 0) * item.quantity}`
-    ).join('\n');
+    const itemsList = comboItems.map(item => {
+      const sizeData = item.perfume.sizes.find(s => s.size === item.selectedSize) || item.perfume.sizes[0];
+      const itemPrice = sizeData.price * item.quantity;
+      
+      return `• ${item.perfume.name} - ${item.perfume.brand} (${item.selectedSize}) (${item.quantity}x) - Bs. ${itemPrice}`;
+    }).join('\n');
     
     const message = `¡Hola! Quiero comprar este combo de perfumes:
 
@@ -85,7 +81,6 @@ ${itemsList}
 
 *RESUMEN:*
 Subtotal: Bs. ${totals.subtotal}
-Descuento (${(totals.discount * 100).toFixed(0)}%): -Bs. ${totals.discountAmount.toFixed(2)}
 *TOTAL: Bs. ${totals.total.toFixed(2)}*
 
 Total de productos: ${totals.itemCount}
@@ -191,55 +186,67 @@ Total de productos: ${totals.itemCount}
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {comboItems.map((item) => (
-                        <div key={item.perfume.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                          <Image
-                            src={item.perfume.image}
-                            alt={item.perfume.name}
-                            width={60}
-                            height={60}
-                            className="rounded-md object-cover"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-sm text-black truncate">
-                              {item.perfume.name}
-                            </h4>
-                            <p className="text-xs text-gray-600">{item.perfume.brand}</p>
-                            <p className="text-sm font-bold text-black">
-                              Bs. {item.perfume.price * item.quantity}
-                            </p>
+                      {comboItems.map((item) => {
+                        // CORRECCIÓN: Obtener precio del tamaño seleccionado
+                        const sizeData = item.perfume.sizes.find(
+                          s => s.size === item.selectedSize
+                        ) || item.perfume.sizes[0];
+                        const itemPrice = sizeData.price * item.quantity;
+
+                        return (
+                          <div key={item.perfume.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <Image
+                              src={item.perfume.image}
+                              alt={item.perfume.name}
+                              width={60}
+                              height={60}
+                              className="rounded-md object-cover"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-sm text-black truncate">
+                                {item.perfume.name}
+                              </h4>
+                              <p className="text-xs text-gray-600">{item.perfume.brand}</p>
+                              <p className="text-xs text-gray-500">
+                                Tamaño: {item.selectedSize}
+                              </p>
+                              {/* Precio corregido */}
+                              <p className="text-sm font-bold text-black">
+                                Bs. {itemPrice.toFixed(2)}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => updateQuantity(item.perfume.id, -1)}
+                                className="h-8 w-8 p-0"
+                              >
+                                <Minus className="w-3 h-3" />
+                              </Button>
+                              <span className="text-sm font-medium w-8 text-center">
+                                {item.quantity}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => updateQuantity(item.perfume.id, 1)}
+                                className="h-8 w-8 p-0"
+                              >
+                                <Plus className="w-3 h-3" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => removeFromCombo(item.perfume.id)}
+                                className="h-8 w-8 p-0 text-red-500 hover:text-red-700"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => updateQuantity(item.perfume.id, -1)}
-                              className="h-8 w-8 p-0"
-                            >
-                              <Minus className="w-3 h-3" />
-                            </Button>
-                            <span className="text-sm font-medium w-8 text-center">
-                              {item.quantity}
-                            </span>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => updateQuantity(item.perfume.id, 1)}
-                              className="h-8 w-8 p-0"
-                            >
-                              <Plus className="w-3 h-3" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => removeFromCombo(item.perfume.id)}
-                              className="h-8 w-8 p-0 text-red-500 hover:text-red-700"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                       
                       <Separator />
                       
@@ -248,12 +255,6 @@ Total de productos: ${totals.itemCount}
                           <span>Subtotal:</span>
                           <span>Bs. {totals.subtotal}</span>
                         </div>
-                        {totals.discount > 0 && (
-                          <div className="flex justify-between text-sm text-green-600">
-                            <span>Descuento ({(totals.discount * 100).toFixed(0)}%):</span>
-                            <span>-Bs. {totals.discountAmount.toFixed(2)}</span>
-                          </div>
-                        )}
                         <Separator />
                         <div className="flex justify-between text-lg font-bold">
                           <span>Total:</span>
@@ -270,13 +271,6 @@ Total de productos: ${totals.itemCount}
                         Comprar Combo
                       </Button>
                       
-                      {totals.itemCount >= 2 && (
-                        <div className="text-center">
-                          <Badge className="bg-green-100 text-green-800 border-green-200">
-                            ¡Ahorraste Bs. {totals.discountAmount.toFixed(2)}!
-                          </Badge>
-                        </div>
-                      )}
                     </div>
                   )}
                 </CardContent>

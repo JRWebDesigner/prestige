@@ -2,7 +2,6 @@ export interface Perfume {
   id: string;
   name: string;
   brand: string;
-  price: number;
   sizes: {
     size: string;
     price: number;
