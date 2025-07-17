@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from 'react';
 import { Perfume } from '@/types/perfume';
 import { useCart } from '@/contexts/CartContext';
 import { Card, CardContent } from '@/components/ui/card';
