@@ -14,25 +14,6 @@ import { ShoppingCart, Heart, Share2, Star, Check, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Define el tipo de perfume (ajusta según tu estructura real)
-type Perfume = {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  size: string;
-  category: string;
-  description: string;
-  image: string;
-  featured: boolean;
-  inStock: boolean;
-  originalPrice?: number;
-  notes: {
-    top: string[];
-    heart: string[];
-    base: string[];
-  };
-};
 
 export default function PerfumePage() {
   const params = useParams();
