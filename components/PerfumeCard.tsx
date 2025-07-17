@@ -68,9 +68,6 @@ Tamaño: ${selectedSize}
           </div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <span className="text-lg text-black">
-                Bs. {perfume.sizes.size[0]}
-              </span>
               {perfume.originalPrice && (
                 <span className="text-sm text-gray-500 line-through">
                   Bs. {perfume.originalPrice}
