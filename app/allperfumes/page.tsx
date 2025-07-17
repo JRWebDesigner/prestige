@@ -19,13 +19,14 @@ const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
     if (priceRange !== 'all') {
       filtered = filtered.filter(perfume => {
+        const minPrice = Math.min(...perfume.sizes.map(s => s.price));
         switch (priceRange) {
           case 'low':
-            return perfume.price < 300;
+            return minPrice < 50;
           case 'medium':
-            return perfume.price >= 300 && perfume.price < 500;
+            return minPrice >= 50 && minPrice < 100;
           case 'high':
-            return perfume.price >= 500;
+            return minPrice >= 100;
           default:
             return true;
         }
