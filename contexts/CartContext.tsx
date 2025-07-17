@@ -9,16 +9,16 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: 'ADD_ITEM'; payload: Perfume }
+  | { type: 'ADD_ITEM'; payload: { perfume: Perfume; selectedSize: string } }
   | { type: 'REMOVE_ITEM'; payload: string }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: string; size: string; quantity: number } }
   | { type: 'CLEAR_CART' };
 
 interface CartContextType {
   cart: Cart;
-  addToCart: (perfume: Perfume) => void;
-  removeFromCart: (perfumeId: string) => void;
-  updateQuantity: (perfumeId: string, quantity: number) => void;
+  addToCart: (perfume: Perfume, selectedSize: string) => void;
+  removeFromCart: (perfumeId: string, size: string) => void;
+  updateQuantity: (perfumeId: string, size: string, quantity: number) => void;
   clearCart: () => void;
 }
 
@@ -27,13 +27,17 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const existingItem = state.items.find(item => item.perfume.id === action.payload.id);
+      const { perfume, selectedSize } = action.payload;
+      const sizeData = perfume.sizes.find(s => s.size === selectedSize) || perfume.sizes[0];
+      const existingItem = state.items.find(item => 
+        item.perfume.id === perfume.id && item.selectedSize === selectedSize
+      );
       
       if (existingItem) {
         return {
           ...state,
           items: state.items.map(item =>
-            item.perfume.id === action.payload.id
+            item.perfume.id === perfume.id && item.selectedSize === selectedSize
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -46,15 +50,16 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           ...state.items,
           {
             perfume: {
-              id: action.payload.id,
-              name: action.payload.name,
-              brand: action.payload.brand,
-              price: action.payload.price,
-              image: action.payload.image,
-              size: action.payload.size,
-              category: action.payload.category,
+              id: perfume.id,
+              name: perfume.name,
+              brand: perfume.brand,
+              price: sizeData.price,
+              image: perfume.image,
+              size: selectedSize,
+              category: perfume.category,
             },
             quantity: 1,
+            selectedSize: selectedSize,
           },
         ],
       };
@@ -63,21 +68,25 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case 'REMOVE_ITEM':
       return {
         ...state,
-        items: state.items.filter(item => item.perfume.id !== action.payload),
+        items: state.items.filter(item => 
+          !(item.perfume.id === action.payload.split('-')[0] && item.selectedSize === action.payload.split('-')[1])
+        ),
       };
     
     case 'UPDATE_QUANTITY':
       if (action.payload.quantity <= 0) {
         return {
           ...state,
-          items: state.items.filter(item => item.perfume.id !== action.payload.id),
+          items: state.items.filter(item => 
+            !(item.perfume.id === action.payload.id && item.selectedSize === action.payload.size)
+          ),
         };
       }
       
       return {
         ...state,
         items: state.items.map(item =>
-          item.perfume.id === action.payload.id
+          item.perfume.id === action.payload.id && item.selectedSize === action.payload.size
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
@@ -103,16 +112,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     itemCount: state.items.reduce((sum, item) => sum + item.quantity, 0),
   };
 
-  const addToCart = (perfume: Perfume) => {
-    dispatch({ type: 'ADD_ITEM', payload: perfume });
+  const addToCart = (perfume: Perfume, selectedSize: string) => {
+    dispatch({ type: 'ADD_ITEM', payload: { perfume, selectedSize } });
   };
 
-  const removeFromCart = (perfumeId: string) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: perfumeId });
+  const removeFromCart = (perfumeId: string, size: string) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: `${perfumeId}-${size}` });
   };
 
-  const updateQuantity = (perfumeId: string, quantity: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id: perfumeId, quantity } });
+  const updateQuantity = (perfumeId: string, size: string, quantity: number) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id: perfumeId, size, quantity } });
   };
 
   const clearCart = () => {

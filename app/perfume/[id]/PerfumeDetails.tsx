@@ -65,7 +65,7 @@ Descripción: ${perfume.description}
   };
 
   const handleAddToCart = () => {
-    addToCart(perfume, selectedSize);
+    addToCart(perfume);
   };
 
   const relatedPerfumes = perfumes.filter(p => 
