@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Perfume } from '@/types/perfume';
 import { useCart } from '@/contexts/CartContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -37,6 +38,7 @@ Tamaño: ${selectedSize}
   const handleAddToCart = () => {
     addToCart(perfume, selectedSize);
   };
+
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 border-gray-200 hover:border-gray-300">
       <CardContent className="p-0">
@@ -73,11 +75,7 @@ Tamaño: ${selectedSize}
               {perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1)}
             </Badge>
           </div>
-          
-          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-            {perfume.description}
-          </p>
-          
+
           {/* Size Selection */}
           <div className="mb-4">
             <label className="text-sm font-medium text-gray-700 mb-2 block">Tamaño:</label>
@@ -137,7 +135,7 @@ Tamaño: ${selectedSize}
           
           {onAddToCombo && (
             <Button
-              onClick={() => onAddToCombo({ ...perfume, selectedSize, currentPrice: currentSizeData.price })}
+              onClick={() => onAddToCombo(perfume)}
               variant="outline"
               className="w-full mt-2 border-gray-300 hover:border-black"
               disabled={!perfume.inStock}
