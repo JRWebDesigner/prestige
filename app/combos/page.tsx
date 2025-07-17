@@ -48,11 +48,21 @@ export default function CombosPage() {
   };
 
   const calculateTotals = () => {
-    const subtotal = comboItems.reduce((sum, item) => sum + (item.perfume.price * item.quantity), 0);
+    const subtotal = comboItems.reduce((sum, item) => {
+      const sizeData = item.perfume.sizes.find(s => s.size === item.selectedSize) || item.perfume.sizes[0];
+      return sum + (sizeData.price * item.quantity);
+    }, 0);
     const itemCount = comboItems.reduce((sum, item) => sum + item.quantity, 0);
-    const total = subtotal;
     
-    return { subtotal, total, itemCount };
+    let discount = 0;
+    if (itemCount >= 2) discount = 0.05; // 5% descuento por 2 o más
+    if (itemCount >= 3) discount = 0.10; // 10% descuento por 3 o más
+    if (itemCount >= 4) discount = 0.15; // 15% descuento por 4 o más
+    
+    const discountAmount = subtotal * discount;
+    const total = subtotal - discountAmount;
+    
+    return { subtotal, discount, discountAmount, total, itemCount };
   };
 
   const handleBuyCombo = () => {
