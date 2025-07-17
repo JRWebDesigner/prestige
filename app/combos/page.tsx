@@ -50,16 +50,9 @@ export default function CombosPage() {
   const calculateTotals = () => {
     const subtotal = comboItems.reduce((sum, item) => sum + (item.perfume.price * item.quantity), 0);
     const itemCount = comboItems.reduce((sum, item) => sum + item.quantity, 0);
+    const total = subtotal;
     
-    let discount = 0;
-    if (itemCount >= 2) discount = 0.05; // 5% descuento por 2 o más
-    if (itemCount >= 3) discount = 0.10; // 10% descuento por 3 o más
-    if (itemCount >= 4) discount = 0.15; // 15% descuento por 4 o más
-    
-    const discountAmount = subtotal * discount;
-    const total = subtotal - discountAmount;
-    
-    return { subtotal, discount, discountAmount, total, itemCount };
+    return { subtotal, total, itemCount };
   };
 
   const handleBuyCombo = () => {
@@ -70,14 +63,13 @@ export default function CombosPage() {
       `• ${item.perfume.name} - ${item.perfume.brand} (${item.quantity}x) - Bs. ${item.perfume.price * item.quantity}`
     ).join('\n');
     
-    const message = `¡Hola! Quiero comprar este combo de perfumes:
+    const message = `¡Hola! Quiero comprar este Kit de perfumes:
 
-*COMBO PERSONALIZADO*
+*KIT PERSONALIZADO*
 ${itemsList}
 
 *RESUMEN:*
 Subtotal: Bs. ${totals.subtotal}
-Descuento (${(totals.discount * 100).toFixed(0)}%): -Bs. ${totals.discountAmount.toFixed(2)}
 *TOTAL: Bs. ${totals.total.toFixed(2)}*
 
 Total de productos: ${totals.itemCount}
@@ -101,35 +93,10 @@ Total de productos: ${totals.itemCount}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-black mb-4">Arma tu Combo Perfecto</h1>
+          <h1 className="text-4xl font-bold text-black mb-4">Arma tu Kit Perfecto</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Selecciona múltiples perfumes y obtén descuentos especiales. Mientras más perfumes agregues, mayor será tu ahorro.
           </p>
-        </div>
-
-        {/* Discount Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card className="border-2 border-gray-200">
-            <CardContent className="p-4 text-center">
-              <Gift className="w-8 h-8 text-gray-600 mx-auto mb-2" />
-              <h3 className="font-semibold text-black">2+ Perfumes</h3>
-              <p className="text-sm text-gray-600">5% de descuento</p>
-            </CardContent>
-          </Card>
-          <Card className="border-2 border-black">
-            <CardContent className="p-4 text-center">
-              <Gift className="w-8 h-8 text-black mx-auto mb-2" />
-              <h3 className="font-semibold text-black">3+ Perfumes</h3>
-              <p className="text-sm text-gray-600">10% de descuento</p>
-            </CardContent>
-          </Card>
-          <Card className="border-2 border-gray-200">
-            <CardContent className="p-4 text-center">
-              <Gift className="w-8 h-8 text-gray-600 mx-auto mb-2" />
-              <h3 className="font-semibold text-black">4+ Perfumes</h3>
-              <p className="text-sm text-gray-600">15% de descuento</p>
-            </CardContent>
-          </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -240,12 +207,6 @@ Total de productos: ${totals.itemCount}
                           <span>Subtotal:</span>
                           <span>Bs. {totals.subtotal}</span>
                         </div>
-                        {totals.discount > 0 && (
-                          <div className="flex justify-between text-sm text-green-600">
-                            <span>Descuento ({(totals.discount * 100).toFixed(0)}%):</span>
-                            <span>-Bs. {totals.discountAmount.toFixed(2)}</span>
-                          </div>
-                        )}
                         <Separator />
                         <div className="flex justify-between text-lg font-bold">
                           <span>Total:</span>
@@ -261,14 +222,6 @@ Total de productos: ${totals.itemCount}
                         <ShoppingCart className="w-4 h-4 mr-2" />
                         Comprar Combo
                       </Button>
-                      
-                      {totals.itemCount >= 2 && (
-                        <div className="text-center">
-                          <Badge className="bg-green-100 text-green-800 border-green-200">
-                            ¡Ahorraste Bs. {totals.discountAmount.toFixed(2)}!
-                          </Badge>
-                        </div>
-                      )}
                     </div>
                   )}
                 </CardContent>

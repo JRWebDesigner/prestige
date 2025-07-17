@@ -3,14 +3,19 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import CartDrawer from './CartDrawer';
 import { Search, Menu, X, Package,ShoppingBag } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const { cart } = useCart();
+
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,9 +49,19 @@ export default function Header() {
             <img className="w-[200px]" src="/logo.png" />
           </Link>
 
-           <nav className="hidden md:flex items-center space-x-8">
-            <ShoppingBag className="transform -translate-y-1/2 text-gray-800 w-7 h-7"/>
-          </nav>
+          <div className="hidden md:flex items-center space-x-4">  
+            {/* Cart Button */}
+            <CartDrawer>
+              <Button variant="outline" size="icon" className="relative border-gray-300 hover:border-black">
+                <ShoppingBag className="w-5 h-5" />
+                {cart.itemCount > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-black text-white text-xs min-w-[20px] h-5 flex items-center justify-center rounded-full">
+                    {cart.itemCount}
+                  </Badge>
+                )}
+              </Button>
+            </CartDrawer>
+          </div>
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
