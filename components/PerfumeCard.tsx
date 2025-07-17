@@ -15,14 +15,17 @@ interface PerfumeCardProps {
 }
 
 export default function PerfumeCard({ perfume, onAddToCombo }: PerfumeCardProps) {
+   const [selectedSize, setSelectedSize] = useState(perfume.sizes[0].size);
   const { addToCart } = useCart();
+
+  const currentSizeData = perfume.sizes.find(s => s.size === selectedSize) || perfume.sizes[0];
 
   const handleBuyNow = () => {
     const message = `Hola! Me interesa el perfume:
     
 *${perfume.name}* - ${perfume.brand}
-Precio: Bs. ${perfume.price}
-Tamabño: ${perfume.size}
+Precio: Bs. ${currentSizeData.price}
+Tamaño: ${selectedSize}
 
 ¿Está disponible?`;
 
@@ -31,7 +34,7 @@ Tamabño: ${perfume.size}
   };
 
   const handleAddToCart = () => {
-    addToCart(perfume);
+    addToCart(perfume, selectedSize);
   };
 
   return (

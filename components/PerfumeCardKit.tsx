@@ -23,7 +23,7 @@ export default function PerfumeCardKit({ perfume, onAddToCombo }: PerfumeCardPro
   const currentSizeData = perfume.sizes.find(s => s.size === selectedSize) || perfume.sizes[0];
 
   const handleBuyNow = () => {
-    const message = `Hola! Me interesa el perfume: 
+    const message = `Hola! Me interesa el perfume:
     
 *${perfume.name}* - ${perfume.brand}
 Precio: Bs. ${currentSizeData.price}
@@ -38,7 +38,6 @@ Tamaño: ${selectedSize}
   const handleAddToCart = () => {
     addToCart(perfume, selectedSize);
   };
-
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 border-gray-200 hover:border-gray-300">
       <CardContent className="p-0">
