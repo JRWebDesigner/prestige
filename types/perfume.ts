@@ -22,6 +22,7 @@ export interface Perfume {
 export interface ComboItem {
   perfume: Perfume;
   quantity: number;
+  selectedSize: string;
 }
 
 export interface Combo {
