@@ -49,23 +49,22 @@ export const perfumes: Perfume[] = [
     id: '3',
     name: 'Khamrah de Lattafa',
     brand: 'perfume',
-    originalPrice:400,
+    originalPrice: 400,
+    description: 'Khamrah de Lattafa Perfumes es una fragancia de la familia olfativa Oriental Especiada para Hombres y Mujeres. Esta fragrancia es nueva. Khamrah se lanzó en 2022. Las Notas de Salida son canela, nuez moscada y bergamota; las Notas de Corazón son dátiles, praliné, nardos y Mahonial; las Notas de Fondo son vainilla, haba tonka, Amberwood, mirra, benjuí y Akigalawood.',
+    image: '/perfume2.jpg',
+    category: 'masculino',
     sizes: [
       { size: '1ML', price: 42 },
       { size: '2ML', price: 79 },
       { size: '4ML', price: 148 },
       { size: '5ML', price: 180 }
     ],
-    description: 'Khamrah de Lattafa Perfumes es una fragancia de la familia olfativa Oriental Especiada para Hombres y Mujeres. Esta fragrancia es nueva. Khamrah se lanzó en 2022. Las Notas de Salida son canela, nuez moscada y bergamota; las Notas de Corazón son dátiles, praliné, nardos y Mahonial; las Notas de Fondo son vainilla, haba tonka, Amberwood, mirra, benjuí y Akigalawood.',
-    image: '/perfume2.jpg',
-    category: 'masculino',
-    size: '100ml',
     notes: {
-      top: ['Limón', 'Bergamota', 'Neroli'],
-      heart: ['Jazmín', 'Calone', 'Ciclamen'],
-      base: ['Musgo Blanco', 'Maderas', 'Almizcle']
+      top: ['Pera', 'Pimienta Rosa', 'Flor de Naranjo'],
+      heart: ['Café', 'Jazmín', 'Almendra Amarga'],
+      base: ['Vainilla', 'Pachulí', 'Cedro']
     },
     inStock: true,
-    featured: false
+    featured: true
   }
 ];
