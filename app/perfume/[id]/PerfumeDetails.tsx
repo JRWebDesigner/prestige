@@ -14,7 +14,6 @@ import { ShoppingCart, Heart, Share2, Star, Check, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 export default function PerfumePage() {
   const params = useParams();
   const perfume = perfumes.find(p => p.id === params.id);
@@ -22,9 +21,8 @@ export default function PerfumePage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const { addToCart } = useCart();
 
-  // Set default size when perfume loads
   useEffect(() => {
-    if (perfume && !selectedSize) {
+    if (perfume && !selectedSize && perfume.sizes.length > 0) {
       setSelectedSize(perfume.sizes[0].size);
     }
   }, [perfume, selectedSize]);
@@ -122,7 +120,7 @@ Descripción: ${perfume.description}
                 <Badge variant="outline" className="text-sm">
                   {perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1)}
                 </Badge>
-                <span className="text-sm text-gray-500">{perfume.size}</span>
+                {/* Eliminado: perfume.size no existe */}
               </div>
               
               <div className="flex items-center gap-3 mb-6">
@@ -171,50 +169,25 @@ Descripción: ${perfume.description}
               {perfume.description}
             </p>
 
-            {/* Notes */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-black">Notas Olfativas</h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card>
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-sm mb-2 text-gray-800">Notas de Salida</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {perfume.notes.top.map((note, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {note}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-sm mb-2 text-gray-800">Notas de Corazón</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {perfume.notes.heart.map((note, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {note}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-sm mb-2 text-gray-800">Notas de Fondo</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {perfume.notes.base.map((note, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {note}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            
+            {/* Action Buttons */}
+            <div className="flex gap-4 mt-8">
+              <Button 
+                onClick={handleAddToCart}
+                className="flex-1 bg-black text-white hover:bg-gray-800"
+                disabled={!perfume.inStock}
+              >
+                <ShoppingCart className="w-5 h-5 mr-2" />
+                Añadir al carrito
+              </Button>
+              <Button 
+                onClick={handleBuyNow}
+                className="flex-1 border border-black text-black hover:bg-gray-100"
+                variant="outline"
+                disabled={!perfume.inStock}
+              >
+                Comprar ahora
+              </Button>
             </div>
           </div>
         </div>
@@ -224,35 +197,45 @@ Descripción: ${perfume.description}
           <div className="mt-20">
             <h2 className="text-2xl font-bold text-black mb-8">Productos Relacionados</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPerfumes.map((relatedPerfume) => (
-                <Card key={relatedPerfume.id} className="group hover:shadow-lg transition-shadow">
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <Image
-                        src={relatedPerfume.image}
-                        alt={relatedPerfume.name}
-                        width={300}
-                        height={200}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-black mb-1">{relatedPerfume.name}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{relatedPerfume.brand}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-black">
-                          Bs. {relatedPerfume.price}
-                        </span>
-                        <Link href={`/perfume/${relatedPerfume.id}`}>
-                          <Button size="sm" variant="outline" className="border-gray-300 hover:border-black">
-                            Ver más
-                          </Button>
-                        </Link>
+              {relatedPerfumes.map((relatedPerfume) => {
+                // Precio del primer tamaño disponible
+                const minPrice = relatedPerfume.sizes[0]?.price || 0;
+                
+                return (
+                  <Card key={relatedPerfume.id} className="group hover:shadow-lg transition-shadow">
+                    <CardContent className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <Image
+                          src={relatedPerfume.image}
+                          alt={relatedPerfume.name}
+                          width={300}
+                          height={200}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        {!relatedPerfume.inStock && (
+                          <Badge variant="destructive" className="absolute top-2 right-2">
+                            Agotado
+                          </Badge>
+                        )}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <div className="p-4">
+                        <h3 className="font-semibold text-black mb-1">{relatedPerfume.name}</h3>
+                        <p className="text-sm text-gray-600 mb-2">{relatedPerfume.brand}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-lg font-bold text-black">
+                            Bs. {minPrice}
+                          </span>
+                          <Link href={`/perfume/${relatedPerfume.id}`}>
+                            <Button size="sm" variant="outline" className="border-gray-300 hover:border-black">
+                              Ver más
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         )}
