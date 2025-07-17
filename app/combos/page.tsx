@@ -14,7 +14,7 @@ import { Plus, Minus, ShoppingCart, Trash2, Gift } from 'lucide-react';
 import Image from 'next/image';
 
 export default function CombosPage() {
-  const [comboItems, setComboItems] = useState<ComboItem[]>([]);
+ const [comboItems, setComboItems] = useState<ComboItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const addToCombo = (perfume: Perfume) => {
@@ -70,8 +70,9 @@ export default function CombosPage() {
     
     const totals = calculateTotals();
     const itemsList = comboItems.map(item => 
-      `• ${item.perfume.name} - ${item.perfume.brand} (${item.quantity}x) - Bs. ${item.perfume.price * item.quantity}`
+      `• ${item.perfume.name} - ${item.perfume.brand} (${item.selectedSize}) (${item.quantity}x) - Bs. ${(item.perfume.sizes.find(s => s.size === item.selectedSize)?.price || 0) * item.quantity}`
     ).join('\n');
+    
     
     const message = `¡Hola! Quiero comprar este Kit de perfumes:
 
