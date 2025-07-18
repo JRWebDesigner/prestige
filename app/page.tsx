@@ -25,7 +25,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-gray-50 to-white pb-20">
       <div className="h-[500px] md:h-[700px] bg-black"> 
-              <video autoPlay loop mute playsInline preload="auto" className="mx-auto h-full w-full md:w-[70%] object-cover object-bottom opacity-70">
+              <video autoPlay loop muted playsInline preload="auto" className="mx-auto h-full w-full md:w-[70%] object-cover object-bottom opacity-70">
                 <source src="/hero.mp4" type="video/mp4" />
               </video>
           </div>
