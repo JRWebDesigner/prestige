@@ -18,6 +18,12 @@ export interface Perfume {
   };
   inStock: boolean;
   featured: boolean;
+  set: boolean;
+  spring: boolean;
+  summer: boolean;
+  winter: boolean;
+  autumn: boolean:
+  
 }
 
 export interface ComboItem {

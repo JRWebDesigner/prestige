@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <header className="bg-white py-5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:mb-8">
         <div className="flex items-center justify-around h-16 md:grid md:grid-cols-3 justify-center items-center place-items-center mx-auto">
          
           {/* Desktop Navigation */}
