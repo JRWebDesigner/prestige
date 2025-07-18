@@ -114,16 +114,15 @@ export const perfumes: Perfume[] = [
     name: 'Khamrah de Lattafa set 2',
     brand: 'perfume',
     originalPrice:400,
+    description: 'Khamrah de Lattafa Perfumes es una fragancia de la familia olfativa Oriental Especiada para Hombres y Mujeres. Esta fragrancia es nueva. Khamrah se lanzó en 2022. Las Notas de Salida son canela, nuez moscada y bergamota; las Notas de Corazón son dátiles, praliné, nardos y Mahonial; las Notas de Fondo son vainilla, haba tonka, Amberwood, mirra, benjuí y Akigalawood.',
+    image: '/perfume2.jpg',
+    category: 'masculino',
     sizes: [
       { size: '1ML', price: 142 },
       { size: '2ML', price: 279 },
       { size: '4ML', price: 348 },
       { size: '5ML', price: 480 }
     ],
-    description: 'Khamrah de Lattafa Perfumes es una fragancia de la familia olfativa Oriental Especiada para Hombres y Mujeres. Esta fragrancia es nueva. Khamrah se lanzó en 2022. Las Notas de Salida son canela, nuez moscada y bergamota; las Notas de Corazón son dátiles, praliné, nardos y Mahonial; las Notas de Fondo son vainilla, haba tonka, Amberwood, mirra, benjuí y Akigalawood.',
-    image: '/perfume2.jpg',
-    category: 'masculino',
-    size: '100ml',
     notes: {
       top: ['Limón', 'Bergamota', 'Neroli'],
       heart: ['Jazmín', 'Calone', 'Ciclamen'],
