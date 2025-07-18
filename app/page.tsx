@@ -48,7 +48,7 @@ export default function Home() {
       </section>
       <img src="/qualitys.webp" className="w-full mx-auto container" />
       {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="hidden py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
