@@ -75,7 +75,6 @@ export const perfumes: Perfume[] = [
       base: ['Vainilla', 'Pachulí', 'Cedro']
     },
     inStock: true,
-<<<<<<< HEAD
     featured: false,
     set:false,
     spring: false,
@@ -137,8 +136,5 @@ export const perfumes: Perfume[] = [
     summer: true,
     winter: false,
     autumn: false,
-=======
-    featured: true
->>>>>>> 531c1c205e88ec09f1d03905645dbcc036a5610c
   }
 ];
