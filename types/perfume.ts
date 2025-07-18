@@ -22,8 +22,7 @@ export interface Perfume {
   spring: boolean;
   summer: boolean;
   winter: boolean;
-  autumn: boolean:
-  
+  autumn: boolean;
 }
 
 export interface ComboItem {
