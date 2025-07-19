@@ -26,8 +26,8 @@ export default function Header() {
 
   return (
     <>
-        <div className="bg-blue-900 flex justify-center items-center py-3">
-            <div className="container text-center text-white text-lg font-bold">
+        <div className="bg-blue-900 flex justify-center items-center py-3 px-5">
+            <div className="container text-center text-white md:text-lg font-bold">
               Muestra de regalo en ventas mayores a 300 bs 🎁
             </div>
         </div>
