@@ -100,7 +100,7 @@ export default function Home() {
       <section className="container py-20">
          <h2 className="text-2xl font-semibold text-black mb-4 text-center">CONSTRUYE TU PROPIO KIT</h2>
          <img src="/kit.webp" className='mx-auto' />
-         <p className="mx-auto md:text-2xl text-center font-semibold">
+         <p className="mx-auto md:text-xl text-center font-semibold">
             Mezcla , combina y construye un kit que vaya contigo
         </p>
          <Link href="/combos" className="flex flex-col sm:flex-row gap-4 justify-center pt-8">

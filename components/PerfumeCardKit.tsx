@@ -64,7 +64,7 @@ Tamaño: ${selectedSize}
         
         <div className="p-6">
           <div className="mb-2">
-            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-black transition-colors">
+            <h3 className="text-lg font-semibold text-gray-900 text-center group-hover:text-black transition-colors">
               {perfume.name}
             </h3>
             <p className="text-sm text-gray-600">{perfume.brand}</p>

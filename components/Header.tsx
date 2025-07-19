@@ -120,6 +120,9 @@ export default function Header() {
                   <Link href="/combos" className="text-gray-700 hover:text-black transition-colors">
                     Arma tu KIT
                   </Link>
+                  <Link href="/sets" className="text-gray-700 hover:text-black transition-colors">
+                    Descubre Sets
+                  </Link>
                   <Link href="/masculino" className="text-gray-700 hover:text-black transition-colors">
                     Para Hombres
                   </Link>

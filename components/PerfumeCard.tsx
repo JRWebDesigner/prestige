@@ -62,14 +62,14 @@ Tamaño: ${selectedSize}
         </div>
         <div className="p-6">
           <div className="mb-2">
-            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-black transition-colors">
+            <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-black transition-colors">
               {perfume.name}
             </h3>
           </div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               {perfume.originalPrice && (
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-gray-500 text-center">
                   Bs. {perfume.originalPrice}
                 </span>
               )}
