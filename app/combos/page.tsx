@@ -122,7 +122,7 @@ Total de productos: ${totals.itemCount}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-black mb-4">Arma tu Combo Perfecto</h1>
+          <h1 className="text-4xl font-bold text-black mb-4">Arma tu Kit Perfecto</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Selecciona múltiples perfumes y obtén descuentos especiales. Mientras más perfumes agregues, mayor será tu ahorro.
           </p>
@@ -188,7 +188,7 @@ Total de productos: ${totals.itemCount}
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <ShoppingCart className="w-5 h-5" />
-                    Mi Combo ({comboItems.length})
+                    Mi Kit ({comboItems.length})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -197,7 +197,7 @@ Total de productos: ${totals.itemCount}
                       <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Gift className="w-8 h-8 text-gray-400" />
                       </div>
-                      <p className="text-gray-500">Tu combo está vacío</p>
+                      <p className="text-gray-500">Tu Kit está vacío</p>
                       <p className="text-sm text-gray-400 mt-1">
                         Agrega perfumes para comenzar
                       </p>
@@ -281,7 +281,7 @@ Total de productos: ${totals.itemCount}
                         size="lg"
                       >
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        Comprar Combo
+                        Comprar Kit
                       </Button>
                       
                       {totals.itemCount >= 2 && (
@@ -299,7 +299,6 @@ Total de productos: ${totals.itemCount}
           </div>
         </div>
       </div>
-      
       <Footer />
     </div>
   );
