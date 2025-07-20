@@ -5,6 +5,12 @@ import PerfumeCard from '@/components/PerfumeCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Star, Gift, Truck, Shield} from 'lucide-react';
 import Link from 'next/link'
 
@@ -161,6 +167,55 @@ export default function Home() {
             Ver Mas
           </Button>
         </Link>
+      </section>
+        <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-black mb-4">Preguntas Frecuentes</h2>
+            <p className="text-gray-600">Resolvemos las dudas más comunes sobre nuestros productos y servicios</p>
+          </div>
+          
+          <div className="space-y-6">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-left">¿SON AUTÉNTICAS NUESTRAS MUESTRAS?</AccordionTrigger>
+                <AccordionContent>
+                <p className="text-gray-600">
+                  SÍ, TODAS LAS MUESTRAS SON GENUINAS Y PROVIENEN DIRECTAMENTE DE MINORISTAS AUTORIZADOS Y PROVEEDORES CONFIABLES.
+                </p>
+                </AccordionContent>
+              </AccordionItem>
+            
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="text-left">¿CUÁNTO TIEMPO TARDA EL ENVÍO?</AccordionTrigger>
+                <AccordionContent>
+                <p className="text-gray-600">
+                  NUESTRO OBJETIVO ES OFRECER CUMPLIMIENTO DENTRO DE 1 A 3 DÍAS DE LA SEMANA, CON TIEMPOS DE ENTREGA QUE GENERALMENTE OSCILAN ENTRE 3 Y 7 DÍAS HÁBILES, DEPENDIENDO DE SU UBICACIÓN.
+                </p>
+                </AccordionContent>
+              </AccordionItem>
+            
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="text-left">¿PROBAR ANTES DE COMPRAR UNA BOTELLA LLENA?</AccordionTrigger>
+                <AccordionContent>
+                <p className="text-gray-600">
+                  EVITE ARREPENTIRSE DE SU NUEVA INVERSIÓN EN AROMA CON UNA BOTELLA LLENA. PRUEBE NUESTRAS MUESTRAS DEL TAMAÑO DE UN VIAJE PARA SUMERGIRSE EN EL AROMA Y TOMAR UNA DECISIÓN INFORMADA ANTES DE COMPROMETERSE CON UNA BOTELLA MÁS GRANDE.
+                </p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">¿Tienes alguna otra pregunta?</p>
+            <Button 
+              onClick={() => window.open('https://wa.me/59175850708?text=Hola! Tengo una consulta sobre sus perfumes.', '_blank')}
+              className="bg-black text-white hover:bg-gray-800"
+            >
+              Contáctanos por WhatsApp
+            </Button>
+          </div>
+        </div>
       </section>
       <Footer />
     </div>

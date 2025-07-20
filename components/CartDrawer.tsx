@@ -39,7 +39,7 @@ Total de productos: ${cart.itemCount}
 
 ¿Están disponibles y puedo proceder con la compra?`;
 
-    const whatsappUrl = `https://wa.me/59170000000?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/59175850708?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
