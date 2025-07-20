@@ -13,7 +13,7 @@ import Link from 'next/link';
 
 interface PerfumeCardProps {
   perfume: Perfume;
-  onAddToCombo?: (perfume: Perfume) => void;
+  onAddToCombo?: (perfume: Perfume, selectedSize: string) => void;
 }
 
 export default function PerfumeCardKit({ perfume, onAddToCombo }: PerfumeCardProps) {
@@ -31,7 +31,7 @@ Tamaño: ${selectedSize}
 
 ¿Está disponible?`;
 
-    const whatsappUrl = `https://wa.me/59175850708?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/59170000000?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -64,7 +64,7 @@ Tamaño: ${selectedSize}
         
         <div className="p-6">
           <div className="mb-2">
-            <h3 className="text-lg font-semibold text-gray-900 text-center group-hover:text-black transition-colors">
+            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-black transition-colors">
               {perfume.name}
             </h3>
             <p className="text-sm text-gray-600">{perfume.brand}</p>
@@ -75,7 +75,11 @@ Tamaño: ${selectedSize}
               {perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1)}
             </Badge>
           </div>
-
+          
+          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+            {perfume.description}
+          </p>
+          
           {/* Size Selection */}
           <div className="mb-4">
             <label className="text-sm font-medium text-gray-700 mb-2 block">Tamaño:</label>
@@ -135,7 +139,7 @@ Tamaño: ${selectedSize}
           
           {onAddToCombo && (
             <Button
-              onClick={() => onAddToCombo(perfume)}
+              onClick={() => onAddToCombo(perfume, selectedSize)}
               variant="outline"
               className="w-full mt-2 border-gray-300 hover:border-black"
               disabled={!perfume.inStock}
