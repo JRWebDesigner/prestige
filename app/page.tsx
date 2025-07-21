@@ -41,7 +41,7 @@ export default function Home() {
               Descubre tu
               Fragancia Perfecta
             </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-6xl mx-auto">
+            <p className="text-sm text-gray-600 mb-8 max-w-6xl mx-auto">
               La vida no es tan larga, como para arrepentirse de un perfume que compraste a ciegas, prueba los aromas de tus sueños antes de comprometerte con con un frasco completo , en un solo clic
             </p>
             <Link href="/allperfumes" className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -85,7 +85,7 @@ export default function Home() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-black mb-4">LOS AROMAS MÁS QUERIDO</h2>
+            <h2 className="text-xl font-semibold text-black mb-4">LOS AROMAS MÁS QUERIDO</h2>
             <p className="text-gray-600">Los perfumes más populares de nuestra colección</p>
           </div>
           
@@ -104,7 +104,7 @@ export default function Home() {
        
       {/* Featured Products */}
       <section className="container py-20">
-         <h2 className="text-2xl font-semibold text-black mb-4 text-center">CONSTRUYE TU PROPIO KIT</h2>
+         <h2 className="text-xl font-semibold text-black mb-4 text-center">CONSTRUYE TU PROPIO KIT</h2>
          <img src="/kit.webp" className='mx-auto' />
          <p className="mx-auto md:text-xl text-center font-semibold">
             Mezcla , combina y construye un kit que vaya contigo
@@ -120,7 +120,7 @@ export default function Home() {
       <section className="container py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-black mb-4">CONJUNTOS DE DESCUBRIMIENTO</h2>
+            <h2 className="text-xl font-semibold text-black mb-4">CONJUNTOS DE DESCUBRIMIENTO</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {setPerfumes.map((perfume) => (
@@ -137,7 +137,7 @@ export default function Home() {
       <section className="container py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-black mb-4">VERANO Y PRIMAVERA</h2>
+            <h2 className="text-xl font-semibold text-black mb-4">VERANO Y PRIMAVERA</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {SumSprPerfumes.map((perfume) => (
@@ -154,7 +154,7 @@ export default function Home() {
       <section className="container py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-black mb-4">OTOÑO E INVIERNO</h2>
+            <h2 className="text-xl font-semibold text-black mb-4">OTOÑO E INVIERNO</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {WinAutPerfumes.map((perfume) => (
@@ -171,7 +171,7 @@ export default function Home() {
         <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-black mb-4">Preguntas Frecuentes</h2>
+            <h2 className="text-xl font-bold text-black mb-4">Preguntas Frecuentes</h2>
             <p className="text-gray-600">Resolvemos las dudas más comunes sobre nuestros productos y servicios</p>
           </div>
           
