@@ -57,7 +57,7 @@ Descripción: ${perfume.description}
 
 ¿Está disponible para compra inmediata?`;
 
-    const whatsappUrl = `https://wa.me/59170000000?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/59175850708?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
