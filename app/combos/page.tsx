@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { perfumes } from '@/data/perfumes';
+import { useState, useEffect } from 'react';
+import { getPerfumes } from '@/lib/sanity';
 import { Perfume, ComboItem } from '@/types/perfume';
 import PerfumeCardKit from '@/components/PerfumeCardKit';
 import Header from '@/components/Header';
@@ -12,19 +12,42 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Plus, Minus, ShoppingCart, Trash2, Gift } from 'lucide-react';
 import Image from 'next/image';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CombosPage() {
   const [comboItems, setComboItems] = useState<ComboItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [perfumes, setPerfumes] = useState<Perfume[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Cargar perfumes desde Sanity
+  useEffect(() => {
+    const loadPerfumes = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const allPerfumes = await getPerfumes();
+        setPerfumes(allPerfumes);
+      } catch (error) {
+        console.error('Error loading perfumes:', error);
+        setError('Error al cargar los perfumes. Intenta recargar la página.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPerfumes();
+  }, []);
 
   const addToCombo = (perfume: Perfume, selectedSize: string) => {
     setComboItems(prev => {
       const existingItem = prev.find(item => 
-        item.perfume.id === perfume.id && item.selectedSize === selectedSize
+        item.perfume._id === perfume._id && item.selectedSize === selectedSize
       );
       if (existingItem) {
         return prev.map(item =>
-          item.perfume.id === perfume.id && item.selectedSize === selectedSize
+          item.perfume._id === perfume._id && item.selectedSize === selectedSize
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -39,25 +62,13 @@ export default function CombosPage() {
   };
 
   const removeFromCombo = (perfumeId: string) => {
-    setComboItems(prev => prev.filter(item => item.perfume.id !== perfumeId));
-  };
-
-  const updateQuantity = (perfumeId: string, change: number) => {
-    setComboItems(prev => {
-      return prev.map(item => {
-        if (item.perfume.id === perfumeId) {
-          const newQuantity = item.quantity + change;
-          return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
-        }
-        return item;
-      }).filter(item => item.quantity > 0);
-    });
+    setComboItems(prev => prev.filter(item => item.perfume._id !== perfumeId));
   };
 
   const updateQuantityBySize = (perfumeId: string, selectedSize: string, change: number) => {
     setComboItems(prev => {
       return prev.map(item => {
-        if (item.perfume.id === perfumeId && item.selectedSize === selectedSize) {
+        if (item.perfume._id === perfumeId && item.selectedSize === selectedSize) {
           const newQuantity = item.quantity + change;
           return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
         }
@@ -65,6 +76,7 @@ export default function CombosPage() {
       }).filter(item => item.quantity > 0);
     });
   };
+
   const calculateTotals = () => {
     const subtotal = comboItems.reduce((sum, item) => {
       const sizeData = item.perfume.sizes.find(s => s.size === item.selectedSize) || item.perfume.sizes[0];
@@ -73,9 +85,9 @@ export default function CombosPage() {
     const itemCount = comboItems.reduce((sum, item) => sum + item.quantity, 0);
     
     let discount = 0;
-    if (itemCount >= 2) discount = 0.05; // 5% descuento por 2 o más
-    if (itemCount >= 3) discount = 0.10; // 10% descuento por 3 o más
-    if (itemCount >= 4) discount = 0.15; // 15% descuento por 4 o más
+    if (itemCount >= 2) discount = 0.05;
+    if (itemCount >= 3) discount = 0.10;
+    if (itemCount >= 4) discount = 0.15;
     
     const discountAmount = subtotal * discount;
     const total = subtotal - discountAmount;
@@ -109,11 +121,80 @@ Total de productos: ${totals.itemCount}
     window.open(whatsappUrl, '_blank');
   };
 
+  // Filtrar perfumes basado en categoría y disponibilidad
   const filteredPerfumes = perfumes.filter(perfume => 
     perfume.inStock && (selectedCategory === 'all' || perfume.category === selectedCategory)
   );
 
   const totals = calculateTotals();
+
+  // Manejar estados de carga y error
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-black mb-4">Arma tu Kit Perfecto</h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Selecciona múltiples perfumes y obtén descuentos especiales...
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <div className="flex justify-between items-center mb-6">
+                <Skeleton className="h-8 w-40" />
+                <Skeleton className="h-10 w-40" />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[1, 2, 3, 4].map((item) => (
+                  <div key={item} className="border rounded-lg p-4">
+                    <div className="flex gap-4">
+                      <Skeleton className="h-24 w-24 rounded-md" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-5 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                        <Skeleton className="h-4 w-1/3" />
+                        <Skeleton className="h-10 w-full mt-2" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="lg:col-span-1">
+              <Skeleton className="h-96 rounded-xl" />
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <div className="text-red-500 mb-4">
+            <p className="text-lg font-semibold">Error al cargar los datos</p>
+            <p className="text-sm mt-2">{error}</p>
+          </div>
+          <Button 
+            onClick={() => window.location.reload()} 
+            className="bg-black text-white hover:bg-gray-800"
+          >
+            Recargar página
+          </Button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -170,15 +251,27 @@ Total de productos: ${totals.itemCount}
               </select>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredPerfumes.map((perfume) => (
-                <PerfumeCardKit 
-                  key={perfume.id} 
-                  perfume={perfume} 
-                  onAddToCombo={addToCombo}
-                />
-              ))}
-            </div>
+            {filteredPerfumes.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Gift className="w-8 h-8 text-gray-400" />
+                </div>
+                <p className="text-gray-500">No hay perfumes disponibles</p>
+                <p className="text-sm text-gray-400 mt-1">
+                  Intenta con otra categoría o recarga la página
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredPerfumes.map((perfume) => (
+                  <PerfumeCardKit 
+                    key={perfume._id} 
+                    perfume={perfume} 
+                    onAddToCombo={addToCombo}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Combo Summary */}
@@ -205,7 +298,7 @@ Total de productos: ${totals.itemCount}
                   ) : (
                     <div className="space-y-4">
                       {comboItems.map((item) => (
-                        <div key={item.perfume.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div key={`${item.perfume._id}-${item.selectedSize}`} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                           <Image
                             src={item.perfume.image}
                             alt={item.perfume.name}
@@ -227,7 +320,7 @@ Total de productos: ${totals.itemCount}
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => updateQuantityBySize(item.perfume.id, item.selectedSize, -1)}
+                              onClick={() => updateQuantityBySize(item.perfume._id, item.selectedSize, -1)}
                               className="h-8 w-8 p-0"
                             >
                               <Minus className="w-3 h-3" />
@@ -238,7 +331,7 @@ Total de productos: ${totals.itemCount}
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => updateQuantityBySize(item.perfume.id, item.selectedSize, 1)}
+                              onClick={() => updateQuantityBySize(item.perfume._id, item.selectedSize, 1)}
                               className="h-8 w-8 p-0"
                             >
                               <Plus className="w-3 h-3" />
@@ -246,7 +339,7 @@ Total de productos: ${totals.itemCount}
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => removeFromCombo(item.perfume.id)}
+                              onClick={() => removeFromCombo(item.perfume._id)}
                               className="h-8 w-8 p-0 text-red-500 hover:text-red-700"
                             >
                               <Trash2 className="w-3 h-3" />

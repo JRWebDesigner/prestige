@@ -1,6 +1,6 @@
 'use client';
-
-import { perfumes } from '@/data/perfumes';
+import { useState, useEffect } from 'react';
+import { getPerfumes } from '@/lib/sanity';
 import PerfumeCard from '@/components/PerfumeCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,7 +8,55 @@ import { Badge } from '@/components/ui/badge';
 import { User } from 'lucide-react';
 
 export default function SetsPage() {
-  const setsPerfumes = perfumes.filter(perfume => perfume.set);
+  const [setsPerfumes, setSetsPerfumes] = useState<Perfume[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadPerfumes = async () => {
+      try {
+        const allPerfumes = await getPerfumes();
+        setSetsPerfumes(allPerfumes.filter(perfume => perfume.set));
+      } catch (error) {
+        console.error('Error loading perfumes:', error);
+        setError('Error al cargar los perfumes');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPerfumes();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <div className="animate-pulse">
+            <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
+            <p className="text-gray-500">Cargando sets de perfumes...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <p className="text-red-500 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()}>
+            Reintentar
+          </Button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -21,9 +69,6 @@ export default function SetsPage() {
             <User className="w-8 h-8 text-black" />
             <h1 className="text-4xl font-bold text-black">Descubre nuevos Sets</h1>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Descubre nuestra selección exclusiva de fragancias. Desde frescas y deportivas hasta intensas y sofisticadas.
-          </p>
           <Badge className="mt-4 bg-black text-white">
             {setsPerfumes.length} productos disponibles
           </Badge>
@@ -38,7 +83,7 @@ export default function SetsPage() {
         
         {setsPerfumes.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No hay perfumes masculinos disponibles en este momento.</p>
+            <p className="text-gray-500 text-lg">No hay sets disponibles en este momento.</p>
           </div>
         )}
       </div>
