@@ -25,14 +25,14 @@ export default defineType({
       name: 'brand',
       title: 'Marca',
       type: 'reference',
-      to: [{ type: 'brand' }],
+      to: { type: 'brand' },
       validation: Rule => Rule.required()
     }),
     defineField({
       name: 'category',
       title: 'Categoría',
       type: 'reference',
-      to: [{ type: 'category' }],
+      to: { type: 'category' },
       validation: Rule => Rule.required()
     }),
     defineField({
