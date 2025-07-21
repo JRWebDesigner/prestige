@@ -22,10 +22,10 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'branduni',
+      name: 'brand',
       title: 'Marca',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: {type: 'brand'}})],
+      type: 'reference',
+      to: [{type: 'brand'}],
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -33,7 +33,6 @@ export default defineType({
       title: 'Categoría',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
-      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'description',
