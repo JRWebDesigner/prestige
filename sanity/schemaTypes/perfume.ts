@@ -29,7 +29,7 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'category',
+      name: 'categoryuni',
       title: 'Categoría',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
