@@ -21,6 +21,11 @@ export interface SanityPerfume {
   }
   inStock: boolean
   featured: boolean
+  set: boolean
+  spring: boolean
+  summer: boolean
+  winter: boolean
+  autumn: boolean
   order: number
   brand: {
     name: string
