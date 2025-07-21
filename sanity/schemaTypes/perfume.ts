@@ -21,12 +21,7 @@ export default defineType({
       },
       validation: Rule => Rule.required(),
     }),
-    defineField({
-      name: 'categoryuni',
-      title: 'Categoría',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
-    }),
+    
     defineField({
       name: 'description',
       title: 'Descripción',
@@ -163,7 +158,6 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      branduni: 'brand.name',
       media: 'image',
     }
   }
