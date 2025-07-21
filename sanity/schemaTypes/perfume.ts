@@ -22,7 +22,7 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'brand',
+      name: 'branduni',
       title: 'Marca',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'brand'}})],
@@ -171,15 +171,8 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      brand: 'brand.name',
+      branduni: 'brand.name',
       media: 'image',
-    },
-    prepare(selection) {
-      const { title, brand } = selection
-      return {
-        title,
-        subtitle: brand ? `${brand}` : 'Sin marca'
-      }
     }
   }
 })
