@@ -24,15 +24,15 @@ export default defineType({
     defineField({
       name: 'brand',
       title: 'Marca',
-      type: 'reference',
-      to: [{ type: 'brand' }],
+      type: 'array',
+      of: [defineArrayMember({type: 'reference', to: {type: 'brand'}})],
       validation: Rule => Rule.required()
     }),
     defineField({
       name: 'category',
       title: 'Categoría',
-      type: 'reference',
-      to: [{ type: 'category' }],
+      type: 'array',
+      of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
       validation: Rule => Rule.required()
     }),
     defineField({
