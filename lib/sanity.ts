@@ -55,6 +55,11 @@ function transformSanityPerfume(sanityPerfume: SanityPerfume): Perfume {
     notes: sanityPerfume.notes,
     inStock: sanityPerfume.inStock,
     featured: sanityPerfume.featured,
+    set: sanityPerfume.set,
+    spring: sanityPerfume.spring,
+    summer: sanityPerfume.summer,
+    winter: sanityPerfume.winter,
+    autumn: sanityPerfume.autumn,
   }
 }
 
