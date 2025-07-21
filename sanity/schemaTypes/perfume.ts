@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'perfume',
@@ -21,7 +21,19 @@ export default defineType({
       },
       validation: Rule => Rule.required(),
     }),
-    
+    defineField({
+      name: 'brand',
+      title: 'Marca',
+      type: 'reference',
+      to: [{type: 'brand'}],
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Categoría',
+      type: 'reference',
+      to: [{type: 'category'}],
+    }),
     defineField({
       name: 'description',
       title: 'Descripción',
@@ -158,6 +170,7 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
+      branduni: 'brand.name',
       media: 'image',
     }
   }
