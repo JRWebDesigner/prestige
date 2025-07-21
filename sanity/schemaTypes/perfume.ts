@@ -136,6 +136,36 @@ export default defineType({
       title: 'Orden de Visualización',
       type: 'number',
       initialValue: 0
+    }),
+    defineField({
+      name: 'set',
+      title: 'Es un Set',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'spring',
+      title: 'Primavera',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'summer',
+      title: 'Verano',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'winter',
+      title: 'Invierno',
+      type: 'boolean',
+      initialValue: false
+    }),
+    defineField({
+      name: 'autumn',
+      title: 'Otoño',
+      type: 'boolean',
+      initialValue: false
     })
   ],
   preview: {

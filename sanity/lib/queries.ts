@@ -13,6 +13,11 @@ export const perfumesQuery = groq`
     inStock,
     featured,
     order,
+    set,
+    spring,
+    summer,
+    winter,
+    autumn,
     brand->{
       name,
       slug
@@ -38,6 +43,11 @@ export const perfumeBySlugQuery = groq`
     inStock,
     featured,
     order,
+    set,
+    spring,
+    summer,
+    winter,
+    autumn,
     brand->{
       name,
       slug
@@ -60,6 +70,11 @@ export const featuredPerfumesQuery = groq`
     sizes,
     inStock,
     featured,
+    set,
+    spring,
+    summer,
+    winter,
+    autumn,
     brand->{
       name,
       slug
