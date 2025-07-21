@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'perfume',
@@ -9,7 +9,7 @@ export default defineType({
       name: 'name',
       title: 'Nombre',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -19,27 +19,27 @@ export default defineType({
         source: 'name',
         maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'brand',
       title: 'Marca',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'brand'}})],
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'category',
       title: 'Categoría',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Descripción',
       type: 'text',
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'image',
@@ -48,7 +48,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'gallery',
@@ -75,24 +75,24 @@ export default defineType({
               name: 'size',
               title: 'Tamaño',
               type: 'string',
-              validation: Rule => Rule.required()
+              validation: Rule => Rule.required(),
             },
             {
               name: 'price',
               title: 'Precio',
               type: 'number',
-              validation: Rule => Rule.required().min(0)
+              validation: Rule => Rule.required().min(0),
             },
             {
               name: 'originalPrice',
               title: 'Precio Original (opcional)',
               type: 'number',
-              validation: Rule => Rule.min(0)
+              validation: Rule => Rule.min(0),
             }
           ]
         }
       ],
-      validation: Rule => Rule.required().min(1)
+      validation: Rule => Rule.required().min(1),
     }),
     defineField({
       name: 'notes',
@@ -103,19 +103,19 @@ export default defineType({
           name: 'top',
           title: 'Notas de Salida',
           type: 'array',
-          of: [{ type: 'string' }]
+          of: [{ type: 'string' }],
         },
         {
           name: 'heart',
           title: 'Notas de Corazón',
           type: 'array',
-          of: [{ type: 'string' }]
+          of: [{ type: 'string' }],
         },
         {
           name: 'base',
           title: 'Notas de Fondo',
           type: 'array',
-          of: [{ type: 'string' }]
+          of: [{ type: 'string' }],
         }
       ]
     }),
@@ -123,56 +123,56 @@ export default defineType({
       name: 'inStock',
       title: 'En Stock',
       type: 'boolean',
-      initialValue: true
+      initialValue: true,
     }),
     defineField({
       name: 'featured',
       title: 'Producto Destacado',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: 'order',
       title: 'Orden de Visualización',
       type: 'number',
-      initialValue: 0
+      initialValue: 0,
     }),
     defineField({
       name: 'set',
       title: 'Es un Set',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: 'spring',
       title: 'Primavera',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: 'summer',
       title: 'Verano',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: 'winter',
       title: 'Invierno',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     }),
     defineField({
       name: 'autumn',
       title: 'Otoño',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     })
   ],
   preview: {
     select: {
       title: 'name',
       brand: 'brand.name',
-      media: 'image'
+      media: 'image',
     },
     prepare(selection) {
       const { title, brand } = selection
