@@ -22,13 +22,6 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'brand',
-      title: 'Marca',
-      type: 'reference',
-      to: [{type: 'brand'}],
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
       name: 'categoryuni',
       title: 'Categoría',
       type: 'array',
