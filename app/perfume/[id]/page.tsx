@@ -142,7 +142,8 @@ Descripción: ${perfume.description}
               <Image
                 src={perfume.image}
                 alt={perfume.name}
-                className="h-full w-full object-contain"
+                fill
+                className="object-contain"
               />
               {perfume.featured && (
                 <Badge className="absolute top-4 left-4 bg-black text-white">
