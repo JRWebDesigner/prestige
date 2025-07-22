@@ -70,11 +70,7 @@ Tamaño: ${selectedSize}
             <p className="text-sm text-gray-600">{perfume.brand}</p>
           </div>
           
-          <div className="mb-3">
-            <Badge variant="outline" className="text-xs">
-              {perfume.category.charAt(0).toUpperCase() + perfume.category.slice(1)}
-            </Badge>
-          </div>
+          
           
           <p className="text-sm text-gray-600 mb-4 line-clamp-2">
             {perfume.description}

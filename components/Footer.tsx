@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Logo y descripción */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold">Prestige</span>
+              <span className="text-2xl font-bold">Prestige Scents</span>
             </div>
             <p className="text-gray-300 mb-4">
               Tu destino para las mejores fragancias. Descubre una amplia selección de perfumes 
@@ -21,7 +21,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-gray-300">
               <li><a href="/" className="hover:text-white transition-colors">Catálogo</a></li>
-              <li><a href="/combos" className="hover:text-white transition-colors">Combos</a></li>
+              <li><a href="/combos" className="hover:text-white transition-colors">Kits</a></li>
               <li><a href="/masculino" className="hover:text-white transition-colors">Masculino</a></li>
               <li><a href="/femenino" className="hover:text-white transition-colors">Femenino</a></li>
               <li><a href="/unisex" className="hover:text-white transition-colors">Unisex</a></li>
@@ -38,18 +38,18 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>info@perfumehub.bo</span>
+                <span>prestigescents.parfums.bo@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
-                <span>La Paz, Bolivia</span>
+                <span>Sucre, Bolivia</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Prestige. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Prestige Scents. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
