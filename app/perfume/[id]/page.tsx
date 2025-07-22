@@ -142,7 +142,6 @@ Descripción: ${perfume.description}
               <Image
                 src={perfume.image}
                 alt={perfume.name}
-                fill
                 className="object-contain"
               />
               {perfume.featured && (
