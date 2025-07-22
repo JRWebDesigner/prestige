@@ -19,14 +19,9 @@ export const perfumesQuery = groq`
     winter,
     autumn,
     brand->{
-      name,
-      slug
+      name
     },
-    category->{
-      name,
-      value,
-      slug
-    }
+    category
   }
 `
 
@@ -49,14 +44,9 @@ export const perfumeBySlugQuery = groq`
     winter,
     autumn,
     brand->{
-      name,
-      slug
+      name
     },
-    category->{
-      name,
-      value,
-      slug
-    }
+    category
   }
 `
 
@@ -76,33 +66,15 @@ export const featuredPerfumesQuery = groq`
     winter,
     autumn,
     brand->{
-      name,
-      slug
+      name
     },
-    category->{
-      name,
-      value,
-      slug
-    }
+    category
   }
 `
 
 export const brandsQuery = groq`
   *[_type == "brand"] | order(name asc) {
     _id,
-    name,
-    slug,
-    logo,
-    description
-  }
-`
-
-export const categoriesQuery = groq`
-  *[_type == "category"] | order(name asc) {
-    _id,
-    name,
-    slug,
-    value,
-    description
+    name
   }
 `

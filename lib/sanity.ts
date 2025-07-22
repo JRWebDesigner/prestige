@@ -47,11 +47,11 @@ function transformSanityPerfume(sanityPerfume: SanityPerfume): Perfume {
   return {
     id: sanityPerfume._id,
     name: sanityPerfume.name,
-    brand: sanityPerfume.brand.name,
+    brand: sanityPerfume.brand?.name || 'Sin marca',
     sizes: sanityPerfume.sizes,
     description: sanityPerfume.description,
     image: urlForImage(sanityPerfume.image)?.width(800).height(600).url() || '',
-    category: sanityPerfume.category.value,
+    category: sanityPerfume.category,
     notes: sanityPerfume.notes,
     inStock: sanityPerfume.inStock,
     featured: sanityPerfume.featured,

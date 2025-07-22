@@ -29,35 +29,11 @@ export interface SanityPerfume {
   autumn: boolean
   brand: {
     name: string
-    slug: {
-      current: string
-    }
   }
-  category: {
-    name: string
-    value: 'masculino' | 'femenino' | 'unisex'
-    slug: {
-      current: string
-    }
-  }
+  category: 'masculino' | 'femenino' | 'unisex'
 }
 
 export interface SanityBrand {
   _id: string
   name: string
-  slug: {
-    current: string
-  }
-  logo?: Image
-  description?: string
-}
-
-export interface SanityCategory {
-  _id: string
-  name: string
-  slug: {
-    current: string
-  }
-  value: 'masculino' | 'femenino' | 'unisex'
-  description?: string
 }
