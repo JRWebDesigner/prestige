@@ -138,7 +138,7 @@ Descripción: ${perfume.description}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Images */}
           <div className="space-y-4">
-            <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
+            <div className="relative bg-gray-100 rounded-lg overflow-hidden">
               <Image
                 src={perfume.image}
                 alt={perfume.name}
