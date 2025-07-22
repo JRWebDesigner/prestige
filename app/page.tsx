@@ -65,7 +65,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <div className="animate-pulse">
             <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <p className="text-gray-500 text-lg">Cargando perfumes desde Sanity...</p>
+            <p className="text-gray-500 text-lg">Cargando perfumes ...</p>
             <p className="text-gray-400 text-sm mt-2">Esto puede tomar unos segundos</p>
           </div>
         </div>

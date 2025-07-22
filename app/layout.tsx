@@ -25,6 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <link rel="icon" href="/logo.jpg" sizes="any" />
+      </head>
       <body className={inter.className}>
         <CartProvider>
           {children}
