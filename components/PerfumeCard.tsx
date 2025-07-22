@@ -47,7 +47,7 @@ Tamaño: ${selectedSize}
             alt={perfume.name}
             width={400}
             height={300}
-            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
           />
           {perfume.featured && (
             <Badge className="absolute top-3 left-3 bg-black text-white">
