@@ -137,25 +137,24 @@ Descripción: ${perfume.description}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Images */}
-          <div className="space-y-4">
-            <div className="relative bg-gray-100 rounded-lg overflow-hidden w-[90%] h-[550px]">
-              <Image
-                src={perfume.image}
-                alt={perfume.name}
-                fill
-                className="object-contain"
-              />
-              {perfume.featured && (
-                <Badge className="absolute top-4 left-4 bg-black text-white">
-                  Destacado
-                </Badge>
-              )}
-              {!perfume.inStock && (
-                <Badge variant="destructive" className="absolute top-4 right-4">
-                  Agotado
-                </Badge>
-              )}
-            </div>
+          <div className="space-y-4">  
+            <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">  
+              <Image  
+                src={perfume.image}  
+                alt={perfume.name}  
+                className="h-full w-full object-contain"  
+              />  
+              {perfume.featured && (  
+                <Badge className="absolute top-4 left-4 bg-black text-white">  
+                  Destacado  
+                </Badge>  
+              )}  
+              {!perfume.inStock && (  
+                <Badge variant="destructive" className="absolute top-4 right-4">  
+                  Agotado  
+                </Badge>  
+              )}  
+            </div>  
           </div>
 
           {/* Product Info */}
