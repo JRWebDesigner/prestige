@@ -132,8 +132,8 @@ export default function Home() {
           </div>
           
           {featuredPerfumes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredPerfumes.map((perfume) => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredPerfumes.slice(0, 5).map((perfume) => (
                 <PerfumeCard key={perfume._id} perfume={perfume} />
               ))}
             </div>
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
        
       {/* Build Your Kit Section */}
-      <section className="container py-20">
+      <section className="container py-20 mx-auto">
         <h2 className="text-xl font-semibold text-black mb-4 text-center">CONSTRUYE TU PROPIO KIT</h2>
         <img src="/kit.webp" className='mx-auto' alt="Build your kit" />
         <p className="mx-auto md:text-xl text-center font-semibold">
@@ -166,14 +166,14 @@ export default function Home() {
       </section>
       
       {/* Discovery Sets */}
-      <section className="container py-16">
+      <section className="container py-16 mx-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-xl font-semibold text-black mb-4">CONJUNTOS DE DESCUBRIMIENTO</h2>
           </div>
           {setPerfumesList.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {setPerfumesList.map((perfume) => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {setPerfumesList.slice(0, 8).map((perfume) => (
                 <PerfumeCard key={perfume._id} perfume={perfume} />
               ))}
             </div>
@@ -183,7 +183,7 @@ export default function Home() {
             </div>
           )}
         </div>
-        <Link href="/setperfumes" className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link href="/sets" className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3">
             Ver Más
           </Button>
@@ -191,14 +191,14 @@ export default function Home() {
       </section>
       
       {/* Spring/Summer Perfumes */}
-      <section className="container py-16">
+      <section className="container py-16 mx-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-xl font-semibold text-black mb-4">VERANO Y PRIMAVERA</h2>
           </div>
           {SumSprPerfumes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {SumSprPerfumes.map((perfume) => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {SumSprPerfumes.slice(0, 8).map((perfume) => (
                 <PerfumeCard key={perfume._id} perfume={perfume} />
               ))}
             </div>
@@ -208,7 +208,7 @@ export default function Home() {
             </div>
           )}
         </div>
-        <Link href="/seasonal" className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link href="/primavera-verano" className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3">
             Ver Más
           </Button>
@@ -222,8 +222,8 @@ export default function Home() {
             <h2 className="text-xl font-semibold text-black mb-4">OTOÑO E INVIERNO</h2>
           </div>
           {WinAutPerfumes.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {WinAutPerfumes.map((perfume) => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {WinAutPerfumes.slice(0, 8).map((perfume) => (
                 <PerfumeCard key={perfume._id} perfume={perfume} />
               ))}
             </div>
@@ -233,7 +233,7 @@ export default function Home() {
             </div>
           )}
         </div>
-        <Link href="/seasonal" className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link href="/otonio-invierno" className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-8 py-3">
             Ver Más
           </Button>

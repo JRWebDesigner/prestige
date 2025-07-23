@@ -55,7 +55,7 @@ export default function Header() {
                 <img className="w-[200px]" src="/logo.png" />
               </Link>
 
-              <div className="hidden md:flex items-center space-x-4">  
+              <div className="flex items-center space-x-4">  
                 {/* Cart Button */}
                 <CartDrawer>
                   <Button variant="outline" size="icon" className="relative border-gray-300 hover:border-black">
@@ -130,7 +130,7 @@ export default function Header() {
                     Para Mujeres
                   </Link>
                   <Link href="/unisex" className="text-gray-700 hover:text-black transition-colors">
-                    Contactos
+                    Unisex
                   </Link>
              </nav>
           </div>
