@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getPerfumes } from '@/lib/sanity';
 import { Perfume } from '@/types/perfume';
 import PerfumeCard from '@/components/PerfumeCard';
