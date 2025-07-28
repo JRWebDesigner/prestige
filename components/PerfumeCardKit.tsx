@@ -20,12 +20,21 @@ export default function PerfumeCardKit({ perfume, onAddToCombo }: PerfumeCardPro
   const [selectedSize, setSelectedSize] = useState(perfume.sizes[0].size);
   const { addToCart } = useCart();
 
+  // Función para obtener el nombre de la marca
+  const getBrandName = () => {
+    if (typeof perfume.brand === 'string') {
+      return perfume.brand;
+    }
+    return perfume.brand?.name || 'Marca desconocida';
+  };
+
   const currentSizeData = perfume.sizes.find(s => s.size === selectedSize) || perfume.sizes[0];
 
   const handleBuyNow = () => {
+    const brandName = getBrandName();
     const message = `Hola! Me interesa el perfume:
     
-*${perfume.name}* - ${perfume.brand}
+*${perfume.name}* - ${brandName}
 Precio: Bs. ${currentSizeData.price}
 Tamaño: ${selectedSize}
 
@@ -67,10 +76,9 @@ Tamaño: ${selectedSize}
             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-black transition-colors">
               {perfume.name}
             </h3>
-            <p className="text-sm text-gray-600">{perfume.brand}</p>
+            {/* Usar la función getBrandName para mostrar la marca */}
+            <p className="text-sm text-gray-600">{getBrandName()}</p>
           </div>
-          
-          
           
           <p className="text-sm text-gray-600 mb-4 line-clamp-2">
             {perfume.description}
@@ -135,7 +143,7 @@ Tamaño: ${selectedSize}
           
           {onAddToCombo && (
             <Button
-              onClick={() => onAddToCombo(perfume, selectedSize)}
+              onClick={() => {onAddToCombo(perfume, selectedSize);}}
               variant="outline"
               className="w-full mt-2 border-gray-300 hover:border-black"
               disabled={!perfume.inStock}
