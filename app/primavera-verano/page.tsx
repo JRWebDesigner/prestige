@@ -67,21 +67,21 @@ export default function PrVePage() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
             <User className="w-8 h-8 text-black" />
-            <h1 className="text-4xl font-bold text-black">Otono e Invierno</h1>
+            <h1 className="text-4xl font-bold text-black">Primavera y Verano</h1>
           </div>
           <Badge className="mt-4 bg-black text-white">
-            {otInPerfumes.length} productos disponibles
+            {prVePerfumes.length} productos disponibles
           </Badge>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {otInPerfumes.map((perfume) => (
+          {prVePerfumes.map((perfume) => (
             <PerfumeCard key={perfume.id} perfume={perfume} />
           ))}
         </div>
         
-        {otInPerfumes.length === 0 && (
+        {prVePerfumes.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No hay perfumes disponibles en este momento.</p>
           </div>
