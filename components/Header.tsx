@@ -52,7 +52,7 @@ export default function Header() {
               </div>
                {/* Logo */}
               <Link href="/" className="flex items-center">
-                <img className="w-[200px]" src="/logo.png" />
+                <img className="w-[100px]" src="/logo.png" />
               </Link>
 
               <div className="flex items-center space-x-4">  
